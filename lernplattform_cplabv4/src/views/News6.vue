@@ -51,7 +51,7 @@ export default {
     async fetchNews() {
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=ainews&apiKey=${this.apiKey}`
+          `https://newsapi.org/v2/everything?q=gemini&apiKey=${this.apiKey}`
         );
         const data = await response.json();
         this.articles = data.articles;

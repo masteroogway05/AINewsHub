@@ -1,21 +1,21 @@
 <template>
   <div class="kategorien">
     <div class="div">
-      <div v-for="(article, index) in articles" :key="index" class="anleitung">
+      <router-link to="/news7"><div v-for="(article, index) in articles1" :key="index" class="anleitung">
         <p class="text-wrapper">{{ article.description }}</p>
         <div class="text-wrapper-2">{{ limitTitle(article.title) }}</div>
         <img :src="article.urlToImage" alt="Article Image" class="image" v-if="article.urlToImage">
-      </div>
-      <div v-for="(article, index) in articles" :key="index" class="anleitung-2">
+      </div></router-link>
+      <router-link to="/news8"><div v-for="(article, index) in articles2" :key="index" class="anleitung-2">
         <p class="p">{{ article.description }}</p>
         <div class="text-wrapper-2">{{ limitTitle(article.title) }}</div>
         <img :src="article.urlToImage" alt="Article Image" class="image" v-if="article.urlToImage">
-      </div>
-      <div v-for="(article, index) in articles" :key="index" class="anleitung-3">
+      </div></router-link>
+      <router-link to="/news9"><div v-for="(article, index) in articles3" :key="index" class="anleitung-3">
         <p class="text-wrapper-3">{{ article.description }}</p>
         <div class="text-wrapper-2">{{ limitTitle(article.title) }}</div>
         <img :src="article.urlToImage" alt="Article Image" class="image" v-if="article.urlToImage">
-      </div>
+      </div></router-link>
       <div class="page-heading">
         <div class="text-wrapper-7">Weitere-News</div>
       </div>
@@ -35,23 +35,60 @@
 export default {
   data() {
     return {
-      articles: [],
-      apiKey: 'f7a697a8679341659ea7e9ff0f63a454',
+      articles1: [],
+      articles2: [],
+      articles3: [],
+      articles4: [],
+      articles5: [],
+      articles6: [],
+      apiKey: 'ca7b858168a8498d9738ff5342b8d7cf',
     };
   },
   mounted() {
     this.fetchNews();
+    this.fetchNewsForBlock(2); // Zweiter Block
+    this.fetchNewsForBlock(3); // Dritter Block
+    this.fetchNewsForBlock(4); // Vierter Block
+    this.fetchNewsForBlock(5); // Fünfter Block
+    this.fetchNewsForBlock(6); // Sechster Block
   },
   methods: {
     async fetchNews() {
+      await this.fetchNewsForBlock(1); // Erster Block
+    },
+    async fetchNewsForBlock(blockNumber) {
       try {
+        const query = this.getQueryForBlock(blockNumber);
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=ai&apiKey=${this.apiKey}`
+          `https://newsapi.org/v2/everything?q=${query}&apiKey=${this.apiKey}`
         );
         const data = await response.json();
-        this.articles = data.articles;
+        const articles = `articles${blockNumber}`;
+        this[articles] = data.articles.map((article) => ({
+          ...article,
+          cssClass: article.title.length > 50 ? 'long-title' : 'short-title',
+        }));
       } catch (error) {
-        console.error('Error fetching news:', error);
+        console.error(`Error fetching news for block ${blockNumber}:`, error);
+      }
+    },
+    getQueryForBlock(blockNumber) {
+      // Hier können Sie die Abfrage je nach Blocknummer anpassen
+      switch (blockNumber) {
+        case 1:
+          return 'copilot';
+        case 2:
+          return 'humanai';
+        case 3:
+          return 'intelligence';
+        case 4:
+          return 'technology';
+        case 5:
+          return 'openai';
+        case 6:
+          return 'gemini';
+        default:
+          return 'copilot';
       }
     },
     formatDate(dateString) {
@@ -62,6 +99,10 @@ export default {
       const words = title.split(' ');
       const limitedTitle = words.slice(0, 3).join(' ');
       return limitedTitle;
+    },
+    getArticleClass(index, blockNumber) {
+      const articles = `articles${blockNumber}`;
+      return this[articles][index].cssClass;
     },
   },
 };

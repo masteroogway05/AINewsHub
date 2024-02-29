@@ -4,7 +4,11 @@ import Signup from '../views/Signup.vue'
 import Login from '../views/Login.vue'
 import Aufträge from '../views/Aufträge.vue'
 import News from '../views/News.vue'
-
+import News2 from '../views/News2.vue'
+import News3 from '../views/News3.vue'
+import News4 from '../views/News4.vue'
+import News5 from '../views/News5.vue'
+import News6 from '../views/News6.vue'
 
 const routes = [
   {
@@ -31,6 +35,31 @@ const routes = [
     path: '/news',
     name: 'News',
     component: News
+  },
+  {
+    path: '/news2',
+    name: 'News2',
+    component: News2
+  },
+  {
+    path: '/news3',
+    name: 'News3',
+    component: News3
+  },
+  {
+    path: '/news4',
+    name: 'News4',
+    component: News4
+  },
+  {
+    path: '/news5',
+    name: 'News5',
+    component: News5
+  },
+  {
+    path: '/news6',
+    name: 'News6',
+    component: News6
   }
 ]
 

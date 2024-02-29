@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       articles: [],
-      apiKey: 'f7a697a8679341659ea7e9ff0f63a454',
+      apiKey: 'ca7b858168a8498d9738ff5342b8d7cf',
     };
   },
   mounted() {

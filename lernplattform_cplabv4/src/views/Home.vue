@@ -20,19 +20,19 @@
           <div class="text-wrapper-2">{{ formatDate(article.publishedAt) }}</div>
           <div class="text-wrapper-3">{{ limitTitle(article.title) }}</div>
         </div></router-link>
-        <router-link to="/news"><div v-for="(article, index) in articles4" :key="index" class="aufgabe-4">
+        <router-link to="/news4"><div v-for="(article, index) in articles4" :key="index" class="aufgabe-4">
            <img :src="article.urlToImage" alt="Article Image" class="image" v-if="article.urlToImage">
           <div class="text-wrapper">{{ article.description }}</div>
           <div class="text-wrapper-2">{{ formatDate(article.publishedAt) }}</div>
           <div class="text-wrapper-3">{{ limitTitle(article.title) }}</div>
         </div></router-link>
-        <router-link to="/news"><div v-for="(article, index) in articles5" :key="index" class="aufgabe-5">
+        <router-link to="/news5"><div v-for="(article, index) in articles5" :key="index" class="aufgabe-5">
            <img :src="article.urlToImage" alt="Article Image" class="image" v-if="article.urlToImage">
           <div class="text-wrapper">{{ article.description }}</div>
           <div class="text-wrapper-2">{{ formatDate(article.publishedAt) }}</div>
           <div class="text-wrapper-3">{{ limitTitle(article.title) }}</div>
         </div></router-link>
-        <router-link to="/news"><div v-for="(article, index) in articles6" :key="index" class="aufgabe-6">
+        <router-link to="/news6"><div v-for="(article, index) in articles6" :key="index" class="aufgabe-6">
            <img :src="article.urlToImage" alt="Article Image" class="image" v-if="article.urlToImage">
           <div class="text-wrapper">{{ article.description }}</div>
           <div class="text-wrapper-2">{{ formatDate(article.publishedAt) }}</div>
@@ -62,7 +62,7 @@ export default {
       articles4: [],
       articles5: [],
       articles6: [],
-      apiKey: 'f7a697a8679341659ea7e9ff0f63a454',
+      apiKey: 'ca7b858168a8498d9738ff5342b8d7cf',
     };
   },
   mounted() {
